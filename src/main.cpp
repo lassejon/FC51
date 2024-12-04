@@ -9,6 +9,8 @@ void setup()
 {
   Serial.begin(115200);
   setupStorage();
+  deleteLogFile();
+
   setupSensor();
 
   setupWiFi();
@@ -27,10 +29,8 @@ void loop()
 {
   if (isObjectDetected())
   {
-    String timestamp = String(millis());
-    String event = timestamp + ", Object passed";
-    logEvent(event); // Log the event to LittleFS
-    Serial.println(event);
+    logDetection();
+    readLogFile();
   }
 
   // delay(100); // Small delay to reduce loop load

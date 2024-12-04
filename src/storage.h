@@ -5,6 +5,8 @@
 #include <LittleFS.h>
 
 void setupStorage();
-void logEvent(const String &event);
+void logDetection();
+void readLogFile();
+void deleteLogFile();
 
 #endif // STORAGE_H

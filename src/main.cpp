@@ -35,6 +35,4 @@ void loop()
     logDetection();
     readLogFile();
   }
-
-  // delay(100); // Small delay to reduce loop load
 }

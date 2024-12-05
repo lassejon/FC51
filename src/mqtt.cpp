@@ -1,10 +1,7 @@
 #include <PubSubClient.h>
 #include <WiFi.h>
 #include "time_handler.h"
-
-const char *mqtt_server = "192.168.1.3";
-const int mqtt_port = 1883;
-const char *mqtt_topic = "sensor/detections";
+#include "config.h"
 
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
@@ -14,7 +11,7 @@ void connectToMQTT()
     while (!mqttClient.connected())
     {
         Serial.print("Connecting to MQTT...");
-        Serial.printf("Server: %s, Port: %d\n", mqtt_server, mqtt_port);
+        Serial.printf("Server: %s, Port: %d\n", MQTT_SERVER, MQTT_PORT);
 
         String clientId = "ESP32Client-" + String(random(0xffff), HEX);
         Serial.printf("ClientID: %s\n", clientId.c_str());
@@ -34,21 +31,18 @@ void connectToMQTT()
 
 void setupMQTT()
 {
-    mqttClient.setServer(mqtt_server, mqtt_port);
+    mqttClient.setServer(MQTT_SERVER, MQTT_PORT);
     connectToMQTT();
 }
 
 void publishDetection(String message)
 {
-    // Existing file logging code...
-
-    // Add MQTT publishing
     if (!mqttClient.connected())
     {
         connectToMQTT();
     }
 
-    mqttClient.publish(mqtt_topic, message.c_str());
+    mqttClient.publish(MQTT_TOPIC, message.c_str());
 
     mqttClient.loop();
 }

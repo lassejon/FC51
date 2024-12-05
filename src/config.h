@@ -14,6 +14,11 @@
 // File paths
 #define LOG_FILE "/log.txt"
 
+// MQTT configuration
+#define MQTT_SERVER "192.168.1.4"
+#define MQTT_PORT 1883
+#define MQTT_TOPIC "sensor/detections"
+
 // wifi
 #define WIFI_SSID "a_cats_dick_hehe"
 #define WIFI_PASSWORD "olatz_the_midget"

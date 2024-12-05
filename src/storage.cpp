@@ -1,6 +1,7 @@
 #include "storage.h"
 #include "config.h"
 #include "time_handler.h"
+#include "mqtt.h"
 
 uint32_t currentDetectionNumber = 0;
 
@@ -68,6 +69,8 @@ void logDetection()
     String logLine = timestamp + "," + String(currentDetectionNumber);
 
     file.println(logLine);
+    publishDetection(logLine);
+
     file.close();
 
     Serial.println("Logged: " + logLine);

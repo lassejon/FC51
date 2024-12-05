@@ -4,6 +4,7 @@
 #include "storage.h"
 #include "wifi_handler.h"
 #include "time_handler.h"
+#include "mqtt.h"
 
 void setup()
 {
@@ -19,6 +20,8 @@ void setup()
     Serial.println("WiFi connected");
     setupTime();
   }
+
+  setupMQTT();
 
   Serial.println("Setup complete.");
 
